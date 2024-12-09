@@ -14,7 +14,7 @@ const handleRejected = (state, action) => {
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
-    items: [], // Inicjujemy items jako pustą tablicę
+    items: [], 
     isLoading: false,
     error: null,
   },
@@ -25,7 +25,6 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         
-        // Upewniamy się, że action.payload jest tablicą
         state.items = Array.isArray(action.payload) ? action.payload : [];
       })
       .addCase(fetchContacts.rejected, handleRejected)
@@ -33,12 +32,11 @@ const contactsSlice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        
-        // Upewniamy się, że items to tablica przed użyciem .push
+
         if (Array.isArray(state.items)) {
           state.items.push(action.payload);
         } else {
-          state.items = [action.payload]; // Jeśli to nie jest tablica, zamień na tablicę z jednym elementem
+          state.items = [action.payload]; 
         }
       })
       .addCase(addContact.rejected, handleRejected)
@@ -47,13 +45,13 @@ const contactsSlice = createSlice({
         state.isLoading = false;
         state.error = null;
         
-        // Upewniamy się, że items to tablica przed wykonaniem filter
+
         if (Array.isArray(state.items)) {
           state.items = state.items.filter(
             (contact) => contact.id !== action.payload
           );
         } else {
-          state.items = []; // Jeśli to nie jest tablica, ustawiamy pustą tablicę
+          state.items = []; 
         }
       })
       .addCase(deleteContact.rejected, handleRejected)

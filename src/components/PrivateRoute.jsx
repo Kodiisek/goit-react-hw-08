@@ -13,8 +13,7 @@ export const PrivateRoute = ({ component: Component, redirectTo = '/' }) => {
   return isLoggedIn ? Component : <Navigate to={redirectTo} />;
 };
 
-// Dodaj PropTypes walidację
 PrivateRoute.propTypes = {
-  component: PropTypes.element.isRequired, // `component` jest wymagany i powinien być elementem React
-  redirectTo: PropTypes.string, // `redirectTo` jest opcjonalny i powinien być stringiem
+  component: PropTypes.element.isRequired, 
+  redirectTo: PropTypes.string, 
 };
